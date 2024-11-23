@@ -32,7 +32,7 @@ function MuscleGroup() {
         <svg
           width="800"
           height="1000"
-          viewBox="0 -100 960 1200"
+          viewBox="0 100 960 1200"
           xmlns="http://www.w3.org/2000/svg"
         >
           <polygon
