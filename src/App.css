@@ -199,3 +199,25 @@ body {
   filter: blur(0);
   transform: translateX(0);
 }
+
+/* Interactive svg muscle groups */
+
+.hover-effect:hover {
+  fill: red;
+  cursor: pointer;
+  
+}
+.selected{
+  fill: green !important;;
+}
+
+.GroupSelected {
+  fill: green !important; /* Changes color when selected */
+}
+
+.GroupContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+}
