@@ -3,9 +3,7 @@ import './App.css';
 import './Loader/Loader.css';
 
 
-import ItemList from './ItemList';
 import Item from './Item';
-import ItemDetail from './ItemDetail';
 import Home from './Home';
 import Navbar from './Navbar';
 import Exercises from './Exercises';
@@ -22,8 +20,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home></Home>}></Route>
           <Route path='/exercises' element={<Exercises></Exercises>}></Route>
-          <Route path='/exercise/:name' element={<Item></Item>}></Route>
-          <Route path='/exercise/detail/:name' element={<ItemDetail></ItemDetail>}></Route>
+          <Route path='/exercise/:id' element={<Item></Item>}></Route>
           <Route path='/pricing' element={<Pricing></Pricing>}></Route>
 
 

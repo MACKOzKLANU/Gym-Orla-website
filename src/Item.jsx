@@ -1,61 +1,74 @@
-import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import LoadingSpinner from './LoadingSpinner';
 
 function Item() {
-    const [Exercise, setExercise] = useState([])
-    const [is_loading, setIs_Loading] = useState(false)
-    const { name } = useParams()
-
-    useEffect(() => {
-        fetchData()
-    }, [])
-    const fetchData = async () => {
-        setIs_Loading(true)
-        let options = {
-            method: 'GET',
-            headers: { 'x-api-key': 'RYZDS1cVq4AAqVZskT2iGQ==4nWUIc0apGdLAzkw' }
-          }
-          
-        let url = `https://api.api-ninjas.com/v1/exercises?name=${name}`
-          
-          
-        fetch(url,options)
-            .then(res => res.json()) // parse response as JSON
-            .then(data => {
-              setExercise(data)
-              
-              setIs_Loading(false)
-
-            })
-            .catch(err => {
-                console.log(`error ${err}`)
-                setIs_Loading(false)
-
-            });
-             
-            }
+    const [exercise, setExercise] = useState(null); // Change from array to null
+    const [isLoading, setIsLoading] = useState(false);
+    let params = useParams();
     
-    return <div>
-        {
-        is_loading && <LoadingSpinner></LoadingSpinner>
-        }
+    useEffect(() => {
+        fetchData();
+    }, [params.id]); // Add dependency array to trigger fetch when ID changes
 
-        {    
-        Exercise.map((exercise, index) => 
-            <div key={index}>
-                <h2>{exercise.name}</h2>
-                <p>Type: {exercise.type}</p>
-                <p>Muscle: {exercise.muscle}</p>
-                <p>Equipment: {exercise.equipment}</p>
-                <p>Difficulty: {exercise.difficulty}</p>
-                <hr />
-            </div>
-        )
-        
-            
+    const fetchData = async () => {
+        setIsLoading(true);
+
+        const url = `https://exercisedb.p.rapidapi.com/exercises/exercise/${params.id}`;
+        const options = {
+          method: "GET",
+          headers: {
+            "x-rapidapi-key": "bca5f95627mshc8dcc16a3c6a234p1cb1a5jsna0e703d7deb6",
+            "x-rapidapi-host": "exercisedb.p.rapidapi.com",
+          },
+        };
+
+        try {
+          const response = await fetch(url, options);
+          const result = await response.json();
+          setExercise(result); // Set the exercise data here
+          setIsLoading(false);
+        } catch (error) {
+          console.error(error);
+          setIsLoading(false);
         }
-        
-    </div>
+    };
+
+    if (isLoading) {
+        return <LoadingSpinner />;
+    }
+
+    if (!exercise) {
+        return <div>No exercise data found.</div>;
+    }
+
+    return (
+        <div className="container">
+            <h1 className="text-center mt-5">Exercise Details</h1>
+            <div className="card mb-4">
+                <div className="row no-gutters">
+                    <div className="col-md-4">
+                        <img src={exercise.gifUrl} className="card-img" alt={exercise.name} />
+                    </div>
+                    <div className="col-md-8">
+                        <div className="card-body">
+                            <h5 className="card-title">{exercise.name}</h5>
+                            <p className="card-text"><strong>Body Part:</strong> {exercise.bodyPart}</p>
+                            <p className="card-text"><strong>Equipment:</strong> {exercise.equipment}</p>
+                            <p className="card-text"><strong>Target Muscle:</strong> {exercise.target}</p>
+                            <p className="card-text"><strong>Secondary Muscles:</strong> {exercise.secondaryMuscles.join(", ")}</p>
+                            <h6>Instructions:</h6>
+                            <ol>
+                                {exercise.instructions.map((instruction, index) => (
+                                    <li key={index}>{instruction}</li>
+                                ))}
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 }
+
 export default Item;

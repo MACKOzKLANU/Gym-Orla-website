@@ -10,25 +10,7 @@ function ItemList() {
   const handleSearch = async () => {
     setIsLoading(true);
     console.log(searchTerm);
-    // let options = {
-    //     method: 'GET',
-    //     headers: { 'x-api-key': 'RYZDS1cVq4AAqVZskT2iGQ==4nWUIc0apGdLAzkw' }
-    //   }
-
-    //   let url = `https://api.api-ninjas.com/v1/exercises?name=${searchTerm}`
-
-    //   fetch(url,options)
-    //         .then(res => res.json()) // parse response as JSON
-    //         .then(data => {
-    //           setExercise(data)
-    //           setIs_Loading(false)
-
-    //         })
-    //         .catch(err => {
-    //             console.log(`error ${err}`)
-    //             setIs_Loading(false)
-
-    //         });
+   
     const url = `https://exercisedb.p.rapidapi.com/exercises/name/${searchTerm}`;
     const options = {
       method: "GET",
@@ -69,6 +51,8 @@ function ItemList() {
             
             <h1 className="text-center mt-5">Exercise List</h1>
             {exercises.map((exercise) => (
+                <Link to={"/exercise/" + exercise.id} >
+
               <div className="card mb-4" key={exercise.id}>
                 
                 <div className="row no-gutters">
@@ -90,26 +74,14 @@ function ItemList() {
                         <strong>Body Part:</strong> {exercise.bodyPart}
                       </p>
                       <p className="card-text">
-                        <strong>Equipment:</strong> {exercise.equipment}
-                      </p>
-                      <p className="card-text">
                         <strong>Target Muscle:</strong> {exercise.target}
                       </p>
-                      <p className="card-text">
-                        <strong>Secondary Muscles:</strong>
-                        {exercise.secondaryMuscles.join(", ")}
-                      </p>
-                      <h6>Instructions:</h6>
-                      <ol>
-                        
-                        {exercise.instructions.map((instruction, index) => (
-                          <li key={index}>{instruction}</li>
-                        ))}
-                      </ol>
+                      
                     </div>
                   </div>
                 </div>
               </div>
+              </Link>
             ))}
           </div>
         </div>
