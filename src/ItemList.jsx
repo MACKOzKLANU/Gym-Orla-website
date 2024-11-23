@@ -41,7 +41,7 @@ function ItemList() {
                 is_loading && <LoadingSpinner></LoadingSpinner>
                 }
                 <input className="form-control" placeholder="exercise name" type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}></input>
-                <button className="btn btn-primary" onClick={handleSearch}>baton</button>
+                <button className="btn btn-danger" onClick={handleSearch}>baton</button>
                 <div>
                     {
                         Exercise.map((exercise, index) =>

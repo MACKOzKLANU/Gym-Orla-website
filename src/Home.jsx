@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import ItemList from "./ItemList";
+import Timeline from "./Timeline";
+import Maintext from "./Maintext";
 
 function Home() {
     const [offer, setOffer] = useState([])
@@ -12,10 +14,7 @@ function Home() {
     <div>
       <div className="container mt-5">
         <div className="row">
-          <div className="col-md-12 text-center">
-            <h1 className="display-4">Achieve Your Fitness Goals</h1>
-            <h2 className="lead">With Gym Orła</h2>
-          </div>
+          <Maintext message={"Achieve Your Fitness Goals"}></Maintext>
         </div>
         <div className="row mt-5">
           <div className="col-md-6">
@@ -25,10 +24,10 @@ function Home() {
               achieve your goals and exceed your expectations. Ready to make a
               change?
             </p>
-            <button className="btn btn-primary btn-lg">Start Your Journey</button>
+            <button className="btn btn-danger btn-lg">Start Your Journey</button>
           </div>
           <div className="col-md-6 ">
-            <img className="img-thumbnail coach-image"
+            <img className="coach-image "
               src="./images/coach.png"
               alt="Fitness coach"
               
@@ -44,7 +43,7 @@ function Home() {
           {
             offer.map((item, index) => (
                 <div className="col-md-3">
-                    <div className="card">
+                    <div className="card bg-danger text-white">
                       <div className="card-body">
                         <span className="font-weight-bold">{item}</span>
                         
@@ -55,7 +54,8 @@ function Home() {
           }
         </div>
       </div>
-      <ItemList></ItemList>
+      {/* <ItemList></ItemList> */}
+      <Timeline></Timeline>
     </div>
     );
   };
