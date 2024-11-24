@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import LoadingSpinner from "./LoadingSpinner";
 
 function MuscleGroup() {
   const [selectedMuscles, setSelectedMuscles] = useState([]);
+  const [filteredExercises, setFilteredExercises] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [input, setInput] = useState("")
   const [isLoading, setIsLoading] = useState(false);
   const [exercises, setExercise] = useState([]);
 
@@ -31,7 +34,18 @@ function MuscleGroup() {
     if (searchTerm) {
       handleSearch();
     }
+
+
   }, [searchTerm]);
+
+  useEffect(() => {
+    if (input !== "") {
+      const filteredList = exercises.filter((exercise) =>
+        exercise.name.toLowerCase().includes(input.toLowerCase()));
+      setFilteredExercises(filteredList);
+    }
+    else { setFilteredExercises(exercises); }
+  }, [input, exercises]);
 
   const handleSearch = async () => {
     setIsLoading(true);
@@ -49,12 +63,15 @@ function MuscleGroup() {
     try {
       const response = await fetch(url, options);
       const result = await response.json();
-      console.log(result);
       if (result.length === 0) {
         setExercise(result);
+        setFilteredExercises(result);
       } else {
-        setExercise(prevExercises => [...prevExercises, ...result]);
-        console.log(exercises);
+        setExercise((prevExercises) => {
+          const newExercises = [...prevExercises, ...result];
+          setFilteredExercises(newExercises);
+          return newExercises;
+        });
       } setIsLoading(false);
     } catch (error) {
       console.error(error);
@@ -69,10 +86,11 @@ function MuscleGroup() {
   return (
     <div>
       <div class="GroupContainer">
+
         <svg
           width="800"
           height="1000"
-          viewBox="0 100 960 1200"
+          viewBox="0 -150 960 1200"
           xmlns="http://www.w3.org/2000/svg"
         >
           <polygon
@@ -307,7 +325,14 @@ function MuscleGroup() {
         <div className="container">
 
           <h1 className="text-center mt-5">Exercise List</h1>
-          {exercises.map((exercise) => (
+          <input
+            className="form-control"
+            placeholder="exercise name"
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+          ></input>
+          {filteredExercises.map((exercise) => (
             <Link to={"/exercise/" + exercise.id} >
 
               <div className="card mb-4" key={exercise.id}>
