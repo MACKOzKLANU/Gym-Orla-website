@@ -199,12 +199,26 @@ body {
   filter: blur(0);
   transform: translateX(0);
 }
+/* button hover effect */
+.btn{
+  transition: fill 0.3s ease, transform 0.3s ease; 
 
+}
+.btn:hover{
+  transform: translateY(-3px);
+  filter: drop-shadow(2px 4px 6px black);
+}
 /* Interactive svg muscle groups */
+
+.hover-effect{
+  transition: fill 0.3s ease, transform 0.3s ease; 
+}
 
 .hover-effect:hover {
   fill: red;
   cursor: pointer;
+  transform: translateY(-3px);
+  filter: drop-shadow(2px 4px 6px black);
   
 }
 .selected{
@@ -212,12 +226,32 @@ body {
 }
 
 .GroupSelected {
-  fill: green !important; /* Changes color when selected */
+  fill: green !important; 
 }
 
 .GroupContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50vh; /* Full viewport height */
+  height: 50vh; 
+}
+
+/* set input above images */
+.form-control{
+  z-index: 9999;
+}
+.svg-image{
+  z-index: 1;
+}
+
+/* hover to pricing cards */
+
+.card{
+  transition: fill 0.3s ease, transform 0.3s ease; 
+
+}
+
+.card:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.514);
 }

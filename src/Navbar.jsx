@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import './App.css'; // Custom CSS for additional styles
+import './App.css'; 
 
 function Navbar() {
     return (
@@ -32,10 +32,10 @@ function Navbar() {
                         </li>
                         
                         <li className="nav-item">
-                            <Link to="/signup" className="nav-link border-hover py-3 text-black">Sign up</Link>
+                            <Link to="/pageinprogress" className="nav-link border-hover py-3 text-black">Sign up</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/signin" id="sign-in" className="nav-link my-2 px-4 text-black bg-danger">
+                            <Link to="/pageinprogress" id="sign-in" className="nav-link my-2 px-4 text-black bg-danger">
                                 <img className="me-3" height={"20dp"} src="./images/profile.png" alt="person-circle icon" />
                                 Sign In
                             </Link>

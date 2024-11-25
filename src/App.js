@@ -10,6 +10,9 @@ import Exercises from './Exercises';
 import Pricing from './Pricing';
 import Tests from './Tests';
 import MuscleGroup from './MuscleGroup';
+import About from './About';
+import Contact from './Contact';
+import PageInProgress from './PageInProgress';
 
 
 
@@ -24,8 +27,12 @@ function App() {
           <Route path='/exercises' element={<Exercises></Exercises>}></Route>
           <Route path='/exercise/:id' element={<Item></Item>}></Route>
           <Route path='/pricing' element={<Pricing></Pricing>}></Route>
-          <Route path='/test' element={<Tests></Tests>}></Route>
-          <Route path='/testing' element={<MuscleGroup></MuscleGroup>}></Route>
+          <Route path='/about' element={<About></About>}></Route>
+          <Route path='/contact' element={<Contact></Contact>}></Route>
+          <Route path='/pageinprogress' element={<PageInProgress></PageInProgress>}></Route>
+
+
+
 
 
 

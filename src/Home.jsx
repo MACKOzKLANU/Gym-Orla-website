@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ItemList from "./ItemList";
 import Timeline from "./Timeline";
 import Maintext from "./Maintext";
+import { Link } from "react-router-dom";
 
 function Home() {
     const [offer, setOffer] = useState([])
@@ -24,7 +25,9 @@ function Home() {
               achieve your goals and exceed your expectations. Ready to make a
               change?
             </p>
-            <button className="btn btn-dark btn-lg">Start Your Journey</button>
+            <Link to="/exercises">
+              <button className="btn btn-dark btn-lg">Start Your Journey</button>
+            </Link>
           </div>
           <div className="col-md-6 ">
             <img className="coach-image "
@@ -42,7 +45,7 @@ function Home() {
         <div className="row mt-3">
           {
             offer.map((item, index) => (
-                <div className="col-md-3">
+                <div className="col-md-3 ">
                     <div className="card bg-black text-white">
                       <div className="card-body">
                         <span className="font-weight-bold">{item}</span>

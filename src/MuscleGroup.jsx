@@ -88,9 +88,10 @@ function MuscleGroup() {
       <div class="GroupContainer">
 
         <svg
+        className="svg-image"
           width="800"
-          height="1000"
-          viewBox="0 -150 960 1200"
+          height="500"
+          viewBox="0 350 960 200"
           xmlns="http://www.w3.org/2000/svg"
         >
           <polygon
