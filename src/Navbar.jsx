@@ -74,7 +74,7 @@ function Navbar() {
                 to="/docs"
                 className="nav-link border-hover py-3 text-black"
               >
-                Sign up
+                Docs
               </Link>
             </li>
             <li className="nav-item">
