@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "./LoadingSpinner";
+import SearchBar from "./SearchBar";
 
 // ItemList component for displaying a list of exercises
 function ItemList() {
@@ -39,15 +40,12 @@ function ItemList() {
     <div className="container">
       <div className="list-group">
         {isLoading && <LoadingSpinner></LoadingSpinner>}
-        <input
-          className="form-control"
-          placeholder="exercise name"
-          type="text"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        ></input>
+        <SearchBar
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+        ></SearchBar>
         <button className="btn btn-dark" onClick={handleSearch}>
-          baton
+          Search
         </button>
         <div>
           <div className="container">
