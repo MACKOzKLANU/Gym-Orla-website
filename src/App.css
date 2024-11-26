@@ -1,10 +1,12 @@
+/* body {
+  overflow-x: hidden;
+} */
 .coach-image {
   width: 30vh;
   height: 30vh;
 }
-a{
+a {
   text-decoration: none;
-
 }
 /* Navbar */
 body {
@@ -43,15 +45,12 @@ body {
   width: 90%;
 }
 
-.nav-item p{
+.nav-item p {
   transition: 0.3s;
-
-
 }
-.nav-item:hover p{
+.nav-item:hover p {
   transform: translateY(-5px);
   font-weight: bold;
-
 }
 
 @media screen and (max-width: 992px) {
@@ -196,13 +195,13 @@ body {
 .left {
   opacity: 0;
   filter: blur(5px);
-  transform: translateX(-100%);
+  transform: translateX(-50%);
   transition: all 1s;
 }
 .right {
   opacity: 0;
   filter: blur(5px);
-  transform: translateX(+100%);
+  transform: translateX(+50%);
   transition: all 1s;
 }
 
@@ -263,4 +262,18 @@ body {
 .card:hover {
   transform: translateY(-3px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.514);
+}
+
+#BackToTop {
+  align-items: center;
+  justify-content: center;
+  display: none;
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 9999;
+}
+
+#BackToTop:hover {
+  background-color: #555;
 }

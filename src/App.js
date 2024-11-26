@@ -11,6 +11,7 @@ import About from "./About";
 import Contact from "./Contact";
 import PageInProgress from "./PageInProgress";
 import Docs from "./Docs";
+import BackToTop from "./BackToTop";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           ></Route>
           <Route path="/docs" element={<Docs></Docs>}></Route>
         </Routes>
+        <BackToTop></BackToTop>
       </BrowserRouter>
     </div>
   );
