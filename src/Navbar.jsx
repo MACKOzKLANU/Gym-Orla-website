@@ -33,7 +33,7 @@ function Navbar() {
           >
             <li className="nav-item">
               <Link to="/" className="nav-link border-hover py-3 text-black">
-                Home
+                <span>Home</span>
               </Link>
             </li>
             <li className="nav-item">
@@ -41,7 +41,7 @@ function Navbar() {
                 to="/exercises"
                 className="nav-link border-hover py-3 text-black"
               >
-                Exercises
+                <span>Exercises</span>
               </Link>
             </li>
             <li className="nav-item">
@@ -49,7 +49,7 @@ function Navbar() {
                 to="/pricing"
                 className="nav-link border-hover py-3 text-black"
               >
-                Pricing
+                <span>Pricing</span>
               </Link>
             </li>
             <li className="nav-item">
@@ -57,7 +57,7 @@ function Navbar() {
                 to="/about"
                 className="nav-link border-hover py-3 text-black"
               >
-                About Us
+                <span>About Us</span>
               </Link>
             </li>
             <li className="nav-item">
@@ -65,7 +65,7 @@ function Navbar() {
                 to="/contact"
                 className="nav-link border-hover py-3 text-black"
               >
-                Contact Us
+                <span>Contact Us</span>
               </Link>
             </li>
 
@@ -74,7 +74,7 @@ function Navbar() {
                 to="/docs"
                 className="nav-link border-hover py-3 text-black"
               >
-                Docs
+                <span>Docs</span>
               </Link>
             </li>
             <li className="nav-item">

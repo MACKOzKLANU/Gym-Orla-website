@@ -40,6 +40,16 @@ body {
   width: 90%;
 }
 
+.nav-item span{
+  transition: 0.3s;
+
+
+}
+.nav-item span:hover{
+  transform: translateY(-30px);
+
+}
+
 @media screen and (max-width: 992px) {
   #nav-length {
     width: 100%;
