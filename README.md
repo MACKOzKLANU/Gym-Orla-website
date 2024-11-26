@@ -1,70 +1,106 @@
-# Getting Started with Create React App
+# Gym Orla website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the Gym orla! This website is designed to help users achieve their fitness goals through a comprehensive set of features, including exercise tracking, personalized training plans, and nutritional guidance.
 
-## Available Scripts
+## Table of Contents
+- [Introduction](#introduction)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Components](#components)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
-In the project directory, you can run:
+## Introduction
+This application provides a platform for users to explore exercises, track their progress, and receive guidance from professional trainers. It's suitable for beginners as well as experienced athletes.
 
-### `npm start`
+## Features
+- **Exercise Database**: Search and filter exercises by name or muscle group.
+- **Personalized Training Plans**: Access customized workout plans.
+- **Nutritional Guidance**: Get advice on diet and nutrition.
+- **Community Support**: Join a supportive fitness community.
+- **Progress Tracking**: Track your fitness progress over time.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Installation
+To install and run the application locally, follow these steps:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. **Clone the repository**:
+    ```sh
+    https://github.com/MACKOzKLANU/Gym-Orla-website.git
+    cd gym_orla
+    ```
 
-### `npm test`
+2. **Install dependencies**:
+    ```sh
+    npm install
+    ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. **Start the development server**:
+    ```sh
+    npm start
+    ```
 
-### `npm run build`
+## Usage
+After starting the development server, you can access the application at `http://localhost:3000`. Navigate through the different sections using the navigation bar to explore exercises, view pricing plans, and more.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Components
+### Home
+- **Purpose**: Serves as the landing page of the application.
+- **Description**: Provides an introduction to the app and highlights key features.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### About
+- **Purpose**: Provides information about the gym and its mission.
+- **Description**: Introduces the team, facilities, and core values of the gym.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Contact
+- **Purpose**: Allows users to get in touch with the gym.
+- **Description**: Includes a contact form and displays the gym's address, phone number, and email.
 
-### `npm run eject`
+### Exercises
+- **Purpose**: Helps users find exercises by name or muscle group.
+- **Description**: Includes search functionality and displays exercise details.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Item
+- **Purpose**: Displays detailed information about a specific exercise.
+- **Description**: Shows an image or animation, instructions, targeted muscles, and required equipment.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### ItemList
+- **Purpose**: Allows users to search for exercises by name.
+- **Description**: Fetches data from an API and displays a list of exercises matching the search term.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### LoadingSpinner
+- **Purpose**: Displays a loading animation while data is being fetched.
+- **Description**: Enhances user experience by providing visual feedback during loading times.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Maintext
+- **Purpose**: Displays a main heading and subheading on various pages.
+- **Description**: Conveys the main message or theme of the page.
 
-## Learn More
+### MuscleGroup
+- **Purpose**: Allows users to find exercises by selecting muscle groups from an interactive SVG image.
+- **Description**: Fetches and displays exercises targeting the selected muscles.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Navbar
+- **Purpose**: Provides navigation links to different sections of the application.
+- **Description**: Ensures users can easily access all parts of the app.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### PageInProgress
+- **Purpose**: Displays a message for pages under construction.
+- **Description**: Informs users that new content is coming soon and provides a link back to the home page.
 
-### Code Splitting
+### Pricing
+- **Purpose**: Displays the membership plans available at the gym.
+- **Description**: Highlights the features and prices of each plan.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Contributing
+Contributions are welcome! Please follow these steps to contribute:
 
-### Analyzing the Bundle Size
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/your-feature-name`).
+3. Commit your changes (`git commit -m 'Add your feature'`).
+4. Push to the branch (`git push origin feature/your-feature-name`).
+5. Open a pull request.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
