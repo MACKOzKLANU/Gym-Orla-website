@@ -4,14 +4,22 @@ import Timeline from "./Timeline";
 import Maintext from "./Maintext";
 import { Link } from "react-router-dom";
 
+// Main component of the home page
 function Home() {
-    const [offer, setOffer] = useState([])
-    useEffect(() => {
-        let list = ["+ 80 Coaches", "100% Client Satisfaction", "+800 Active Members", "24/7 Support Available"]
-        setOffer(list)
-    }, [])
+  // useState hook to manage the state of the 'offer' variable
+  const [offer, setOffer] = useState([]);
+  // useEffect hook to initialize the 'offer' list when the component mounts
+  useEffect(() => {
+    let list = [
+      "+ 80 Coaches",
+      "100% Client Satisfaction",
+      "+800 Active Members",
+      "24/7 Support Available",
+    ];
+    setOffer(list);
+  }, []);
 
-    return (
+  return (
     <div>
       <div className="container mt-5">
         <div className="row">
@@ -20,20 +28,22 @@ function Home() {
         <div className="row mt-5">
           <div className="col-md-6">
             <p>
-              Join the Gym Orła Community and transform your fitness journey. Our
-              expert coaches and personalized programs are designed to help you
-              achieve your goals and exceed your expectations. Ready to make a
-              change?
+              Join the Gym Orła Community and transform your fitness journey.
+              Our expert coaches and personalized programs are designed to help
+              you achieve your goals and exceed your expectations. Ready to make
+              a change?
             </p>
             <Link to="/exercises">
-              <button className="btn btn-dark btn-lg">Start Your Journey</button>
+              <button className="btn btn-dark btn-lg">
+                Start Your Journey
+              </button>
             </Link>
           </div>
           <div className="col-md-6 ">
-            <img className="coach-image "
+            <img
+              className="coach-image "
               src="./images/coach.png"
               alt="Fitness coach"
-              
             />
           </div>
         </div>
@@ -43,24 +53,20 @@ function Home() {
           </div>
         </div>
         <div className="row mt-3">
-          {
-            offer.map((item, index) => (
-                <div className="col-md-3 ">
-                    <div className="card bg-black text-white">
-                      <div className="card-body">
-                        <span className="font-weight-bold">{item}</span>
-                        
-                      </div>
-                    </div>
+          {offer.map((item, index) => (
+            <div className="col-md-3 ">
+              <div className="card bg-black text-white">
+                <div className="card-body">
+                  <span className="font-weight-bold">{item}</span>
                 </div>
-            ))
-          }
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-      {/* <ItemList></ItemList> */}
       <Timeline></Timeline>
     </div>
-    );
-  };
+  );
+}
 
 export default Home;

@@ -3,7 +3,9 @@ import ItemList from "./ItemList";
 import Maintext from "./Maintext";
 import MuscleGroup from "./MuscleGroup";
 
+// Exercises component for displaying exercise options
 function Exercises() {
+  // useState hook to manage the state for toggling between exercise search modes
   const [statement, setStatement] = useState(true);
   return (
     <div className="container">
@@ -17,12 +19,9 @@ function Exercises() {
           {statement ? "Search by exercise name" : "Search by muscle group"}
         </button>
         <hr></hr>
-
-        </div>
-        {statement ? <ItemList></ItemList> : <MuscleGroup></MuscleGroup>}
-
-        
-      
+      </div>
+      {/* Conditional rendering based on the state value */}
+      {statement ? <ItemList></ItemList> : <MuscleGroup></MuscleGroup>}
     </div>
   );
 }

@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+
+// PageInProgress component for displaying a page under construction message
 function PageInProgress() {
   return (
     <div className="container text-center mt-5">

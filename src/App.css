@@ -1,9 +1,9 @@
-.coach-image{
+.coach-image {
   width: 30vh;
   height: 30vh;
 }
 
-/* navbar */
+/* Navbar */
 body {
   background: #ffffff;
 }
@@ -19,7 +19,8 @@ body {
 
 .border-hover:hover {
   border-top: 5px solid #dc3545;
-  transform: translateY(-4px);}
+  transform: translateY(-4px);
+}
 
 #sign-in {
   border-color: #d43f3a;
@@ -28,7 +29,7 @@ body {
 }
 
 .navbar-toggler {
-  border: 3px solid #FF9138;
+  border: 3px solid #ff9138;
 }
 
 .navbar-toggler:focus {
@@ -39,25 +40,23 @@ body {
   width: 90%;
 }
 
-@media screen and (max-width : 992px) {
+@media screen and (max-width: 992px) {
   #nav-length {
-      width: 100%;
+    width: 100%;
   }
 
   .border-hover {
-      border-top: 0;
+    border-top: 0;
   }
 
   .border-hover:hover {
-      border-top: 0;
+    border-top: 0;
   }
 
   #sign-in {
-      border-radius: 50px;
+    border-radius: 50px;
   }
 }
-
-
 
 /* Timeline */
 
@@ -178,7 +177,6 @@ body {
   }
 }
 
-
 /* Timeline items appear */
 
 .left {
@@ -200,18 +198,17 @@ body {
   transform: translateX(0);
 }
 /* button hover effect */
-.btn{
-  transition: fill 0.3s ease, transform 0.3s ease; 
-
+.btn {
+  transition: fill 0.3s ease, transform 0.3s ease;
 }
-.btn:hover{
+.btn:hover {
   transform: translateY(-3px);
   filter: drop-shadow(2px 4px 6px black);
 }
 /* Interactive svg muscle groups */
 
-.hover-effect{
-  transition: fill 0.3s ease, transform 0.3s ease; 
+.hover-effect {
+  transition: fill 0.3s ease, transform 0.3s ease;
 }
 
 .hover-effect:hover {
@@ -219,39 +216,37 @@ body {
   cursor: pointer;
   transform: translateY(-3px);
   filter: drop-shadow(2px 4px 6px black);
-  
 }
-.selected{
-  fill: green !important;;
+.selected {
+  fill: green !important;
 }
 
 .GroupSelected {
-  fill: green !important; 
+  fill: green !important;
 }
 
 .GroupContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50vh; 
+  height: 50vh;
 }
 
 /* set input above images */
-.form-control{
+.form-control {
   z-index: 9999;
 }
-.svg-image{
+.svg-image {
   z-index: 1;
 }
 
 /* hover to pricing cards */
 
-.card{
-  transition: fill 0.3s ease, transform 0.3s ease; 
-
+.card {
+  transition: fill 0.3s ease, transform 0.3s ease;
 }
 
-.card:hover{
+.card:hover {
   transform: translateY(-3px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.514);
 }

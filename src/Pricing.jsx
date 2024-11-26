@@ -1,7 +1,9 @@
 import React from "react";
 import Maintext from "./Maintext";
 
+// Pricing component for displaying membership plans
 function Pricing() {
+  // List of membership plans with features
   const membershipPlans = [
     {
       name: "Basic Plan",
@@ -59,12 +61,10 @@ function Pricing() {
     },
   ];
 
-  console.log(membershipPlans[0].name);
-
   return (
     <div>
       <Maintext message={"Discover Our Competitive Prices"}></Maintext>
-      <section className="bsb-pricing-2 bg-light py-5 py-xl-8" >
+      <section className="bsb-pricing-2 bg-light py-5 py-xl-8">
         <div className="container">
           <div className="row gy-5 gy-lg-0 gx-xl-5">
             {membershipPlans.map((plan, index) => (
