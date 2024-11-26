@@ -40,13 +40,14 @@ body {
   width: 90%;
 }
 
-.nav-item span{
+.nav-item p{
   transition: 0.3s;
 
 
 }
-.nav-item span:hover{
-  transform: translateY(-30px);
+.nav-item:hover p{
+  transform: translateY(-5px);
+  font-weight: bold;
 
 }
 
