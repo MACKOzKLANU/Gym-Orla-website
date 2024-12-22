@@ -79,7 +79,7 @@ function Navbar() {
             </li>
             <li className="nav-item">
               <Link
-                to="/pageinprogress"
+                to="/signin"
                 id="sign-in"
                 className="nav-link my-2 px-4 text-black bg-danger"
               >

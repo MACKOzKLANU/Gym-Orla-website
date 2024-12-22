@@ -12,6 +12,8 @@ import Contact from "./Contact";
 import PageInProgress from "./PageInProgress";
 import Docs from "./Docs";
 import BackToTop from "./BackToTop";
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
 
 function App() {
   return (
@@ -29,6 +31,9 @@ function App() {
             path="/pageinprogress"
             element={<PageInProgress></PageInProgress>}
           ></Route>
+          <Route path="/signin" element={<SignIn></SignIn>}></Route>
+          <Route path="/signup" element={<SignUp></SignUp>}></Route>
+
           <Route path="/docs" element={<Docs></Docs>}></Route>
         </Routes>
         <BackToTop></BackToTop>

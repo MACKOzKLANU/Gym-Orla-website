@@ -12,28 +12,31 @@ function ItemList() {
 
   // Function to handle search and fetch data from the API
   const handleSearch = async () => {
-    setIsLoading(true);
-    console.log(searchTerm);
+    if (searchTerm !== "") {
+      setIsLoading(true);
+      console.log(searchTerm);
 
-    const url = `https://exercisedb.p.rapidapi.com/exercises/name/${searchTerm}`;
-    const options = {
-      method: "GET",
-      headers: {
-        "x-rapidapi-key": "bca5f95627mshc8dcc16a3c6a234p1cb1a5jsna0e703d7deb6",
-        "x-rapidapi-host": "exercisedb.p.rapidapi.com",
-      },
-    };
+      const url = `https://exercisedb.p.rapidapi.com/exercises/name/${searchTerm}`;
+      const options = {
+        method: "GET",
+        headers: {
+          "x-rapidapi-key": "bca5f95627mshc8dcc16a3c6a234p1cb1a5jsna0e703d7deb6",
+          "x-rapidapi-host": "exercisedb.p.rapidapi.com",
+        },
+      };
 
-    try {
-      const response = await fetch(url, options);
-      const result = await response.json();
-      console.log(result);
-      setExercise(result);
+      try {
+        const response = await fetch(url, options);
+        const result = await response.json();
+        console.log(result);
+        setExercise(result);
 
-      setIsLoading(false);
-    } catch (error) {
-      console.error(error);
-      setIsLoading(false);
+        setIsLoading(false);
+      } catch (error) {
+        console.error(error);
+        setIsLoading(false);
+
+      }
     }
   };
   return (
