@@ -1,8 +1,24 @@
 import { Link } from "react-router-dom";
 import "./App.css";
-
+import { auth, app } from './firebaseConfig';
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { useEffect, useState } from "react";
 // Navbar component for site-wide navigation
+
 function Navbar() {
+  const [user, setUser] = useState(false)
+  var isLoggedIn = auth.currentUser;
+
+
+  auth.onAuthStateChanged(function(userLoggedIn) {
+    if (userLoggedIn) {
+      setUser(true)
+      // User is signed in.
+    } else {
+      setUser(false)
+      // No user is signed in.
+    }
+  });
   return (
     <nav className="navbar navbar-expand-lg pt-4">
       <div className="container-fluid">
@@ -78,19 +94,40 @@ function Navbar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link
-                to="/signin"
-                id="sign-in"
-                className="nav-link my-2 px-4 text-black bg-danger"
-              >
-                <img
-                  className="me-3"
-                  height={"20dp"}
-                  src="./images/profile.png"
-                  alt="person-circle icon"
-                />
-                Sign In
-              </Link>
+
+              {(user) ? (
+                <Link
+                  to="/signin"
+                  onClick={() => signOut(auth)}
+                  id="sign-in"
+                  className="nav-link my-2 px-4 text-black bg-danger"
+                >
+                  <img
+                    className="me-3"
+                    height={"20dp"}
+                    src="./images/profile.png"
+                    alt="person-circle icon"
+                  />
+                  Sign out
+                </Link>
+                
+              ) : (
+                <Link
+                  to="/signin"
+                  id="sign-in"
+                  className="nav-link my-2 px-4 text-black bg-danger"
+                >
+                  <img
+                    className="me-3"
+                    height={"20dp"}
+                    src="./images/profile.png"
+                    alt="person-circle icon"
+                  />
+                  Sign In
+                </Link>
+              )}
+
+
             </li>
           </ul>
         </div>
