@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { initializeApp } from 'firebase/app';
 import { signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword } from "firebase/auth";
 import { auth, app } from './firebaseConfig';
+
 
 
 const provider = new GoogleAuthProvider();
@@ -18,6 +19,7 @@ function SignIn() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate(); 
 
     const signInWithEmailAndPassword = (event) => {
         event.preventDefault();
@@ -26,6 +28,7 @@ function SignIn() {
                 // Signed in 
                 const user = userCredential.user;
                 // ...
+                navigate('/');
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -47,6 +50,11 @@ function SignIn() {
                 const user = result.user;
                 // IdP data available using getAdditionalUserInfo(result)
                 // ...
+                // this.props.history.push('/home')
+                navigate('/');
+
+
+                
             }).catch((error) => {
                 // Handle Errors here.
                 const errorCode = error.code;

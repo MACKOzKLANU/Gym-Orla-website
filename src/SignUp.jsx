@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, app } from './firebaseConfig';
 
@@ -14,6 +14,7 @@ function SignUp() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate(); 
 
     const SignUpWithEmailAndPassword = (event) => {
         event.preventDefault();
@@ -22,6 +23,7 @@ function SignUp() {
                 // Signed up 
                 const user = userCredential.user;
                 // ...
+                navigate('/');
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -40,6 +42,8 @@ function SignUp() {
                     const user = result.user;
                     // IdP data available using getAdditionalUserInfo(result)
                     // ...
+                    navigate('/');
+
                 }).catch((error) => {
                     // Handle Errors here.
                     const errorCode = error.code;
