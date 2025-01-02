@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 function Navbar() {
   const [user, setUser] = useState(false)
-  var isLoggedIn = auth.currentUser;
+  // var isLoggedIn = auth.currentUser;
 
 
   auth.onAuthStateChanged(function(userLoggedIn) {

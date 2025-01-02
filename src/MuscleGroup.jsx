@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LoadingSpinner from "./LoadingSpinner";
+
+import { auth, app, db } from './firebaseConfig';
+import { onAuthStateChanged } from "firebase/auth";
+import { collection, addDoc } from "firebase/firestore"; 
+
+
+// import { favouriteIcon } from "./images/favourite.svg";
+// import { favouriteIconFilled } from "./images/favourite-fill.svg";
 
 // MuscleGroup component for searching and displaying exercises based on muscle groups
 function MuscleGroup() {
@@ -10,6 +18,35 @@ function MuscleGroup() {
   const [searchTerm, setSearchTerm] = useState("");
   const [input, setInput] = useState("");
   const [exercises, setExercise] = useState([]);
+
+  const navigate = useNavigate(); 
+
+
+
+  var user = auth.currentUser;
+
+if (user) {
+  // User is signed in.
+} else {
+  // No user is signed in.
+}
+
+
+  const handleAddToFavorites = async (exercise) => {
+    // Add logic to add the exercise to the database
+    if(user){
+      console.log('Adding to favorites:', exercise);
+      // Add a new document with a generated id.
+      const docRef = await addDoc(collection(db, "cities"), {
+        name: "Tokyo",
+        country: "Japan"
+      });
+      console.log("Document written with ID: ", docRef.id);
+    }
+    else{
+      navigate('/signin');
+    }
+};
 
   // Handle click event for selecting muscles on the SVG image
   const handleClick = (event) => {
@@ -57,6 +94,7 @@ function MuscleGroup() {
         "x-rapidapi-host": "exercisedb.p.rapidapi.com",
       },
     };
+
 
     try {
       const response = await fetch(url, options);
@@ -357,6 +395,15 @@ function MuscleGroup() {
                         <strong>Target Muscle:</strong> {exercise.target}
                       </p>
                     </div>
+                    <button
+                        className="btn z-3 btn-link position-absolute top-0 end-0 m-2"
+                        onClick={(e) =>{
+                          e.preventDefault();
+                        handleAddToFavorites(exercise)
+                        }}
+                    >
+                        <img src="./images/favourite.svg" alt="Add to Favorites" width="24" height="24" />
+                    </button>
                   </div>
                 </div>
               </div>
