@@ -37,9 +37,15 @@ if (user) {
     if(user){
       console.log('Adding to favorites:', exercise);
       // Add a new document with a generated id.
-      const docRef = await addDoc(collection(db, "cities"), {
-        name: "Tokyo",
-        country: "Japan"
+      const docRef = await addDoc(collection(db, "favouriteExercises"), {
+        uid: auth.currentUser.uid,
+        name: exercise.name,
+        target: exercise.target,
+        secondaryMuscles: exercise.secondaryMuscles,
+        bodyPart: exercise.bodyPart,
+        equipment: exercise.equipment,
+        gifUrl: exercise.gifUrl,
+        instructions: exercise.instructions
       });
       console.log("Document written with ID: ", docRef.id);
     }
