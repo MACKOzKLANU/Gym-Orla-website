@@ -23,14 +23,47 @@ function Favorites() {
 
   return (
     <div>
-      <h1>Favorites</h1>
+      <h1 className="text-center mt-5">Favorites</h1>
       <button onClick={getFavorites}>Get Favorites</button>
       {favorites.map((exercise) => {
         return (
-          <div key={exercise.name}>
-            <h3>{exercise.name}</h3>
-            <p>{exercise.target}</p>
+          <div className="container">
+      <div className="card mb-4">
+        <div className="row no-gutters">
+          <div className="col-md-4">
+            <img
+              src={exercise.gifUrl}
+              className="card-img"
+              alt={exercise.name}
+            />
           </div>
+          <div className="col-md-8">
+            <div className="card-body">
+              <h5 className="card-title">{exercise.name}</h5>
+              <p className="card-text">
+                <strong>Body Part:</strong> {exercise.bodyPart}
+              </p>
+              <p className="card-text">
+                <strong>Equipment:</strong> {exercise.equipment}
+              </p>
+              <p className="card-text">
+                <strong>Target Muscle:</strong> {exercise.target}
+              </p>
+              <p className="card-text">
+                <strong>Secondary Muscles:</strong>{" "}
+                {exercise.secondaryMuscles.join(", ")}
+              </p>
+              <h6>Instructions:</h6>
+              <ol>
+                {exercise.instructions.map((instruction, index) => (
+                  <li key={index}>{instruction}</li>
+                ))}
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
         );
       })}
     </div>
