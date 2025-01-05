@@ -408,7 +408,7 @@ if (user) {
                         handleAddToFavorites(exercise)
                         }}
                     >
-                        <img src="./images/favourite.svg" alt="Add to Favorites" width="24" height="24" />
+                        <img src="./images/favorite.svg" alt="Add to Favorites" width="24" height="24" />
                     </button>
                   </div>
                 </div>
