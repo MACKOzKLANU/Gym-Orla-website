@@ -1,6 +1,6 @@
 import { collection, query, where, getDocs, doc, deleteDoc } from "firebase/firestore";
 import { auth, app, db } from './firebaseConfig';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 function Favorites() {
@@ -21,35 +21,39 @@ function Favorites() {
     console.log(allFavorites);
   }
 
+  useEffect(() => {
+    getFavorites();
+  }, [])
+
   const handleRemoveFromFavorites = async (exercise) => {
     console.log(exercise);
 
     // Find the document in the collection that matches the exercise name and the user ID
     const q = query(
-        collection(db, "favouriteExercises"),
-        where("uid", "==", auth.currentUser.uid),
-        where("name", "==", exercise.name)
+      collection(db, "favouriteExercises"),
+      where("uid", "==", auth.currentUser.uid),
+      where("name", "==", exercise.name)
     );
     const querySnapshot = await getDocs(q);
 
     querySnapshot.forEach(async (docSnapshot) => {
-        console.log(docSnapshot.id, " => ", docSnapshot.data());
+      console.log(docSnapshot.id, " => ", docSnapshot.data());
 
-        // Get a DocumentReference using the doc's ID
-        const docRef = doc(db, "favouriteExercises", docSnapshot.id);
+      // Get a DocumentReference using the doc's ID
+      const docRef = doc(db, "favouriteExercises", docSnapshot.id);
 
-        // Delete the document
-        await deleteDoc(docRef);
+      // Delete the document
+      await deleteDoc(docRef);
 
-        let tempFavorites = favorites.filter((fav) => fav.name !== exercise.name);
-        setFavorites(tempFavorites);
+      let tempFavorites = favorites.filter((fav) => fav.name !== exercise.name);
+      setFavorites(tempFavorites);
     });
-};
+  };
 
   return (
     <div>
       <h1 className="text-center mt-5">Favorites</h1>
-      <button onClick={getFavorites}>Get Favorites</button>
+      {/* <button onClick={getFavorites}>Get Favorites</button> */}
       {favorites.map((exercise) => {
         return (
           <div className="container">

@@ -87,10 +87,10 @@ function Navbar() {
 
             <li className="nav-item">
               <Link
-                to="/docs"
+                to="/favorites"
                 className="nav-link border-hover py-3 text-black"
               >
-                <p>Docs</p>
+                <p>Favorites</p>
               </Link>
             </li>
             <li className="nav-item">
