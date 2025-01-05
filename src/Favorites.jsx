@@ -1,54 +1,27 @@
 import { collection, query, where, getDocs, doc, deleteDoc } from "firebase/firestore";
 import { auth, app, db } from './firebaseConfig';
 import { useEffect, useState } from "react";
+import { getFavorites, handleRemoveFromFavorites } from './FirebaseUtils';
+import { onAuthStateChanged } from "firebase/auth";
 
 
 function Favorites() {
   const [favorites, setFavorites] = useState([]);
-  const getFavorites = async () => {
-    const q = query(collection(db, "favouriteExercises"), where("uid", "==", auth.currentUser.uid));
-    const allFavorites = []; // Temporary array to hold all documents
 
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      console.log(doc.id, " => ", doc.data());
-      allFavorites.push(doc.data());
-
-    });
-
-    setFavorites(allFavorites);
-    console.log(allFavorites);
-  }
 
   useEffect(() => {
-    getFavorites();
-  }, [])
+    const fetchFavorites = async () => {
+      const favoritesList = await getFavorites();
+      setFavorites(favoritesList);
+    };
 
-  const handleRemoveFromFavorites = async (exercise) => {
-    console.log(exercise);
-
-    // Find the document in the collection that matches the exercise name and the user ID
-    const q = query(
-      collection(db, "favouriteExercises"),
-      where("uid", "==", auth.currentUser.uid),
-      where("name", "==", exercise.name)
-    );
-    const querySnapshot = await getDocs(q);
-
-    querySnapshot.forEach(async (docSnapshot) => {
-      console.log(docSnapshot.id, " => ", docSnapshot.data());
-
-      // Get a DocumentReference using the doc's ID
-      const docRef = doc(db, "favouriteExercises", docSnapshot.id);
-
-      // Delete the document
-      await deleteDoc(docRef);
-
-      let tempFavorites = favorites.filter((fav) => fav.name !== exercise.name);
-      setFavorites(tempFavorites);
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        fetchFavorites();
+      }
     });
-  };
+    
+  }, []);
 
   return (
     <div>
@@ -93,7 +66,7 @@ function Favorites() {
                     className="btn z-3 btn-link position-absolute top-0 end-0 m-2"
                     onClick={(e) => {
                       e.preventDefault();
-                      handleRemoveFromFavorites(exercise)
+                      handleRemoveFromFavorites(exercise, setFavorites, favorites);
                     }}
                   >
                     <img src="./images/favorite-fill.svg" alt="Add to Favorites" width="24" height="24" />

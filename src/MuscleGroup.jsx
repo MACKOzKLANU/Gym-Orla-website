@@ -6,7 +6,7 @@ import { auth, app, db } from './firebaseConfig';
 import { onAuthStateChanged } from "firebase/auth";
 import { collection, addDoc, query, where, getDocs, doc, deleteDoc } from "firebase/firestore";
 
-
+import { getFavorites, handleRemoveFromFavorites, handleAddToFavorites } from './FirebaseUtils';
 // import { favouriteIcon } from "./images/favourite.svg";
 // import { favouriteIconFilled } from "./images/favourite-fill.svg";
 
@@ -23,24 +23,11 @@ function MuscleGroup() {
 
   const navigate = useNavigate();
 
-  const getFavorites = async () => {
-    const q = query(collection(db, "favouriteExercises"), where("uid", "==", auth.currentUser.uid));
-    const allFavorites = []; // Temporary array to hold all documents
 
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      console.log(doc.id, " => ", doc.data());
-      allFavorites.push(doc.data().name);
-
-    });
-
-    setFavorites(allFavorites);
-    console.log(allFavorites);
-  }
 
   const checkIfFavorite = (exerciseName) => {
-    return favorites.includes(exerciseName);
+
+    return favorites.some(exercise => exercise.name === exerciseName);
   }
 
   var user = auth.currentUser;
@@ -50,54 +37,6 @@ function MuscleGroup() {
   } else {
     // No user is signed in.
   }
-
-
-  const handleAddToFavorites = async (exercise) => {
-    // Add logic to add the exercise to the database
-    if (user) {
-      console.log('Adding to favorites:', exercise);
-      // Add a new document with a generated id.
-      const docRef = await addDoc(collection(db, "favouriteExercises"), {
-        uid: auth.currentUser.uid,
-        name: exercise.name,
-        target: exercise.target,
-        secondaryMuscles: exercise.secondaryMuscles,
-        bodyPart: exercise.bodyPart,
-        equipment: exercise.equipment,
-        gifUrl: exercise.gifUrl,
-        instructions: exercise.instructions
-      });
-      console.log("Document written with ID: ", docRef.id);
-      setFavorites((prevFavorites) => [...prevFavorites, exercise.name]);
-    }
-    else {
-      navigate('/signin');
-    }
-  };
-
-  const handleRemoveFromFavorites = async (exercise) => {
-    console.log(exercise);
-
-    // Find the document in the collection that matches the exercise name and the user ID
-    const q = query(
-      collection(db, "favouriteExercises"),
-      where("uid", "==", auth.currentUser.uid),
-      where("name", "==", exercise.name)
-    );
-    const querySnapshot = await getDocs(q);
-
-    querySnapshot.forEach(async (docSnapshot) => {
-      console.log(docSnapshot.id, " => ", docSnapshot.data());
-
-      // Get a DocumentReference using the doc's ID
-      const docRef = doc(db, "favouriteExercises", docSnapshot.id);
-
-      // Delete the document
-      await deleteDoc(docRef);
-
-      setFavorites((prevFavorites) => prevFavorites.filter((fav) => fav !== exercise.name));
-    });
-  };
 
   // Handle click event for selecting muscles on the SVG image
   const handleClick = (event) => {
@@ -133,12 +72,19 @@ function MuscleGroup() {
     }
   }, [input, exercises]);
 
+
   useEffect(() => {
+    const fetchFavorites = async () => {
+      const favoritesList = await getFavorites();
+      setFavorites(favoritesList);
+    };
+
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        getFavorites();
+        fetchFavorites();
       }
     });
+    
   }, []);
 
 
@@ -439,7 +385,7 @@ function MuscleGroup() {
                       className="btn z-3 btn-link position-absolute top-0 end-0 m-2"
                       onClick={(e) => {
                         e.preventDefault();
-                        checkIfFavorite(exercise.name) ? handleRemoveFromFavorites(exercise) : handleAddToFavorites(exercise)
+                        checkIfFavorite(exercise.name) ? handleRemoveFromFavorites(exercise, setFavorites, favorites) : handleAddToFavorites(exercise, setFavorites, navigate);
                       }}
                     >
                       {checkIfFavorite(exercise.name) ? (
