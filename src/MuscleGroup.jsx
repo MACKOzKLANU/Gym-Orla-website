@@ -6,7 +6,7 @@ import { auth, app, db } from './firebaseConfig';
 import { onAuthStateChanged } from "firebase/auth";
 import { collection, addDoc, query, where, getDocs, doc, deleteDoc } from "firebase/firestore";
 
-import { getFavorites, handleRemoveFromFavorites, handleAddToFavorites } from './FirebaseUtils';
+import { getFavorites, handleRemoveFromFavorites, handleAddToFavorites, checkIfFavorite, handleSearch } from './FirebaseUtils';
 // import { favouriteIcon } from "./images/favourite.svg";
 // import { favouriteIconFilled } from "./images/favourite-fill.svg";
 
@@ -22,13 +22,6 @@ function MuscleGroup() {
   const [favorites, setFavorites] = useState([]);
 
   const navigate = useNavigate();
-
-
-
-  const checkIfFavorite = (exerciseName) => {
-
-    return favorites.some(exercise => exercise.name === exerciseName);
-  }
 
   var user = auth.currentUser;
 
@@ -56,7 +49,7 @@ function MuscleGroup() {
   // Fetch exercises based on the search term when it changes
   useEffect(() => {
     if (searchTerm) {
-      handleSearch();
+      handleSearch(setExercise, setFilteredExercises, searchTerm);
     }
   }, [searchTerm]);
 
@@ -84,42 +77,8 @@ function MuscleGroup() {
         fetchFavorites();
       }
     });
-    
+
   }, []);
-
-
-
-  // Fetch exercises from the API based on the search term
-  const handleSearch = async () => {
-    console.log(searchTerm);
-
-    const url = `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${searchTerm}`;
-    const options = {
-      method: "GET",
-      headers: {
-        "x-rapidapi-key": "bca5f95627mshc8dcc16a3c6a234p1cb1a5jsna0e703d7deb6",
-        "x-rapidapi-host": "exercisedb.p.rapidapi.com",
-      },
-    };
-
-
-    try {
-      const response = await fetch(url, options);
-      const result = await response.json();
-      if (result.length === 0) {
-        setExercise(result);
-        setFilteredExercises(result);
-      } else {
-        setExercise((prevExercises) => {
-          const newExercises = [...prevExercises, ...result];
-          setFilteredExercises(newExercises);
-          return newExercises;
-        });
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   // Check if a muscle is selected
   const isSelected = (muscle) => selectedMuscles.includes(muscle);
@@ -385,14 +344,12 @@ function MuscleGroup() {
                       className="btn z-3 btn-link position-absolute top-0 end-0 m-2"
                       onClick={(e) => {
                         e.preventDefault();
-                        checkIfFavorite(exercise.name) ? handleRemoveFromFavorites(exercise, setFavorites, favorites) : handleAddToFavorites(exercise, setFavorites, navigate);
+                        checkIfFavorite(exercise.name, favorites) ? handleRemoveFromFavorites(exercise, setFavorites, favorites) : handleAddToFavorites(exercise, setFavorites, navigate);
                       }}
                     >
-                      {checkIfFavorite(exercise.name) ? (
-                        console.log(checkIfFavorite(exercise.name)),
+                      {checkIfFavorite(exercise.name, favorites) ? (
                         <img src="./images/favorite-fill.svg" alt="Remove from Favorites" width="24" height="24" />
                       ) : (
-                        console.log(checkIfFavorite(exercise.name)),
 
                         <img src="./images/favorite.svg" alt="Add to Favorites" width="24" height="24" />
                       )}
