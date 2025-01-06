@@ -83,3 +83,69 @@ export const handleAddToFavorites = async (exercise, setFavorites, navigate) => 
     console.error("Error adding to favorites:", error);
   }
 };
+
+export const checkIfFavorite = (exerciseName, favorites) => {
+
+  return favorites.some(exercise => exercise.name === exerciseName);
+}
+
+// Fetch exercises from the API based on the search term
+export const handleSearch = async (setExercise, setFilteredExercises, searchTerm) => {
+  console.log(searchTerm);
+
+  const url = `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${searchTerm}`;
+  const options = {
+    method: "GET",
+    headers: {
+      "x-rapidapi-key": "bca5f95627mshc8dcc16a3c6a234p1cb1a5jsna0e703d7deb6",
+      "x-rapidapi-host": "exercisedb.p.rapidapi.com",
+    },
+  };
+
+
+  try {
+    const response = await fetch(url, options);
+    const result = await response.json();
+    if (result.length === 0) {
+      setExercise(result);
+      setFilteredExercises(result);
+    } else {
+      setExercise((prevExercises) => {
+        const newExercises = [...prevExercises, ...result];
+        setFilteredExercises(newExercises);
+        return newExercises;
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const handleSearchExerciseName = async (setExercise, setIsLoading, searchTerm) => {
+  if (searchTerm !== "") {
+    setIsLoading(true);
+    console.log(searchTerm);
+
+    const url = `https://exercisedb.p.rapidapi.com/exercises/name/${searchTerm}`;
+    const options = {
+      method: "GET",
+      headers: {
+        "x-rapidapi-key": "bca5f95627mshc8dcc16a3c6a234p1cb1a5jsna0e703d7deb6",
+        "x-rapidapi-host": "exercisedb.p.rapidapi.com",
+      },
+    };
+
+    try {
+      const response = await fetch(url, options);
+      const result = await response.json();
+      console.log(result);
+      setExercise(result);
+
+      setIsLoading(false);
+    } catch (error) {
+      console.error(error);
+      setIsLoading(false);
+
+    }
+  }
+};

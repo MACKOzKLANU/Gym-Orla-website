@@ -20,7 +20,7 @@ function Favorites() {
         fetchFavorites();
       }
     });
-    
+
   }, []);
 
   return (

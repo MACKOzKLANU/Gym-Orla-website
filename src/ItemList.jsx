@@ -1,7 +1,10 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LoadingSpinner from "./LoadingSpinner";
 import SearchBar from "./SearchBar";
+
+import { getFavorites, handleRemoveFromFavorites, handleAddToFavorites, checkIfFavorite, handleSearchExerciseName } from './FirebaseUtils';
+
 
 // ItemList component for displaying a list of exercises
 function ItemList() {
@@ -10,35 +13,12 @@ function ItemList() {
   const [exercises, setExercise] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  const [favoriteExercise, setFavoriteExercise] = useState(false);
+  const [favorites, setFavorites] = useState([]);
   // Function to handle search and fetch data from the API
-  const handleSearch = async () => {
-    if (searchTerm !== "") {
-      setIsLoading(true);
-      console.log(searchTerm);
 
-      const url = `https://exercisedb.p.rapidapi.com/exercises/name/${searchTerm}`;
-      const options = {
-        method: "GET",
-        headers: {
-          "x-rapidapi-key": "bca5f95627mshc8dcc16a3c6a234p1cb1a5jsna0e703d7deb6",
-          "x-rapidapi-host": "exercisedb.p.rapidapi.com",
-        },
-      };
-
-      try {
-        const response = await fetch(url, options);
-        const result = await response.json();
-        console.log(result);
-        setExercise(result);
-
-        setIsLoading(false);
-      } catch (error) {
-        console.error(error);
-        setIsLoading(false);
-
-      }
-    }
-  };
+    const navigate = useNavigate();
+  
   return (
     <div className="container">
       <div className="list-group">
@@ -47,7 +27,7 @@ function ItemList() {
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
         ></SearchBar>
-        <button className="btn btn-dark" onClick={handleSearch}>
+        <button className="btn btn-dark" onClick={() => handleSearchExerciseName(setExercise, setIsLoading, searchTerm)}>
           Search
         </button>
         <div>
@@ -74,6 +54,20 @@ function ItemList() {
                           <strong>Target Muscle:</strong> {exercise.target}
                         </p>
                       </div>
+                      <button
+                        className="btn z-3 btn-link position-absolute top-0 end-0 m-2"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          checkIfFavorite(exercise.name, favorites) ? handleRemoveFromFavorites(exercise, setFavorites, favorites) : handleAddToFavorites(exercise, setFavorites, navigate);
+                        }}
+                      >
+                        {checkIfFavorite(exercise.name, favorites) ? (
+                          <img src="./images/favorite-fill.svg" alt="Remove from Favorites" width="24" height="24" />
+                        ) : (
+
+                          <img src="./images/favorite.svg" alt="Add to Favorites" width="24" height="24" />
+                        )}
+                      </button>
                     </div>
                   </div>
                 </div>
