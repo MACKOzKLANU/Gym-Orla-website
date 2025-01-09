@@ -15,6 +15,7 @@ import BackToTop from "./BackToTop";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import Favorites from "./Favorites";
+import BookingPage from "./BookingPage";
 
 function App() {
   return (
@@ -29,6 +30,8 @@ function App() {
           <Route path="/pricing" element={<Pricing></Pricing>}></Route>
           <Route path="/about" element={<About></About>}></Route>
           <Route path="/contact" element={<Contact></Contact>}></Route>
+          <Route path="/booking" element={<BookingPage></BookingPage>}></Route>
+
           <Route
             path="/pageinprogress"
             element={<PageInProgress></PageInProgress>}
