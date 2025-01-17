@@ -16,6 +16,7 @@ import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import Favorites from "./Favorites";
 import BookingPage from "./BookingPage";
+import CalorieCalculator from "./CalorieCalculator";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path="/about" element={<About></About>}></Route>
           <Route path="/contact" element={<Contact></Contact>}></Route>
           <Route path="/booking" element={<BookingPage></BookingPage>}></Route>
+          <Route path="caloriecalculator" element={<CalorieCalculator></CalorieCalculator>}></Route>
 
           <Route
             path="/pageinprogress"
