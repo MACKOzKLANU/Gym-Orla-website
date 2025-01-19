@@ -280,3 +280,19 @@ body {
     display: none !important;
   }
 }
+
+
+/* button and form */
+
+
+.button-dark {
+  background: linear-gradient(90deg, rgba(40,116,240,1) 0%, rgba(30,30,60,1) 100%);
+  border: "none";
+}
+
+.form-dark {
+  max-width: 450px;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #1c1c1e, #2c2c2e);
+  border: 1px solid #444;
+}
