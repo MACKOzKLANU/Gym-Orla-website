@@ -10,7 +10,7 @@ function Exercises() {
   return (
     <div className="container">
       <Maintext message={"Unleash Your Potential"}></Maintext>
-      {/* if z exercise by name i by muscle */}
+      {/* if with searching exercise by name or by muscle */}
       <div className="list-group">
         <button
           className="btn btn-dark"
