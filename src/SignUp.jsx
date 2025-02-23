@@ -16,7 +16,7 @@ function SignUp() {
     const [password, setPassword] = useState('');
     const navigate = useNavigate(); 
 
-    const SignUpWithEmailAndPassword = (event) => {
+    const handleSignUpWithEmailAndPassword = (event) => {
         event.preventDefault();
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
@@ -32,7 +32,7 @@ function SignUp() {
             });
     };
 
-    const signInWithGoogle = () => {
+    const handleSignInWithGoogle = () => {
             signInWithPopup(auth, provider)
                 .then((result) => {
                     // This gives you a Google Access Token. You can use it to access the Google API.
@@ -60,7 +60,7 @@ function SignUp() {
         <div className="d-flex justify-content-center align-items-center vh-100">
             <div className="card p-4" style={{ width: '100%', maxWidth: '400px' }}>
                 <h2 className="text-center mb-4">Sign Up</h2>
-                <form onSubmit={SignUpWithEmailAndPassword}>
+                <form onSubmit={handleSignUpWithEmailAndPassword}>
                     <div className="mb-3">
                         <label htmlFor="name" className="form-label">Name:</label>
                         <input
@@ -103,7 +103,7 @@ function SignUp() {
                     or sign in with
                 </div>
                 <div className="text-center mt-3">
-                    <svg onClick={signInWithGoogle} stroke="currentColor" fill="currentColor" stroke-width="0" version="1.1" x="0px" y="0px" class="google-icon" viewBox="0 0 48 48" height="2em" width="2em" xmlns="http://www.w3.org/2000/svg">
+                    <svg onClick={handleSignInWithGoogle} stroke="currentColor" fill="currentColor" stroke-width="0" version="1.1" x="0px" y="0px" class="google-icon" viewBox="0 0 48 48" height="2em" width="2em" xmlns="http://www.w3.org/2000/svg">
                         <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12
 	c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24
 	c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"></path>
