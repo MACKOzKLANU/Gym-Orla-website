@@ -1,6 +1,6 @@
 # Gym Orla website
 
-Welcome to the Gym orla! This website is designed to help users achieve their fitness goals through a comprehensive set of features, including exercise tracking, personalized training plans, and nutritional guidance.
+Welcome to the Gym orla! This website is designed to help users achieve their fitness goals through a comprehensive set of features, including exercise finding,
 
 ## Table of Contents
 - [Introduction](#introduction)
@@ -13,14 +13,10 @@ Welcome to the Gym orla! This website is designed to help users achieve their fi
 - [Contact](#contact)
 
 ## Introduction
-This application provides a platform for users to explore exercises, track their progress, and receive guidance from professional trainers. It's suitable for beginners as well as experienced athletes.
+This application provides a platform for users to explore exercises. It's suitable for beginners as well as experienced athletes.
 
 ## Features
 - **Exercise Database**: Search and filter exercises by name or muscle group.
-- **Personalized Training Plans**: Access customized workout plans.
-- **Nutritional Guidance**: Get advice on diet and nutrition.
-- **Community Support**: Join a supportive fitness community.
-- **Progress Tracking**: Track your fitness progress over time.
 
 ## Installation
 To install and run the application locally, follow these steps:
