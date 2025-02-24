@@ -2,21 +2,26 @@
 
 Welcome to the Gym orla! This website is designed to help users achieve their fitness goals through a comprehensive set of features, including exercise finding,
 
+Click to view the live website <a href="https://gym-orla-website.vercel.app">https://gym-orla-website.vercel.app</a>
 ## Table of Contents
 - [Introduction](#introduction)
 - [Features](#features)
+- [Issues](#issues)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Components](#components)
 - [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
 
 ## Introduction
 This application provides a platform for users to explore exercises. It's suitable for beginners as well as experienced athletes.
 
 ## Features
 - **Exercise Database**: Search and filter exercises by name or muscle group.
+
+
+## Issues
+
+*   **Google Authentication:** Due to hosting restrictions, Google Authentication (login with Google) is currently unavailable on the deployed version of this website. However, this functionality is fully implemented in the codebase and can be tested locally.
 
 ## Installation
 To install and run the application locally, follow these steps:
