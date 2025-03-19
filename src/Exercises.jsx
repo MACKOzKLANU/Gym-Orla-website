@@ -6,7 +6,7 @@ import MuscleGroup from "./MuscleGroup";
 // Exercises component for displaying exercise options
 function Exercises() {
   // useState hook to manage the state for toggling between exercise search modes
-  const [statement, setStatement] = useState(true);
+  const [statement, setStatement] = useState(false);
   return (
     <div className="container">
       <Maintext message={"Unleash Your Potential"}></Maintext>
