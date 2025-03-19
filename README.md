@@ -24,8 +24,6 @@ This application provides a platform for users to explore exercises. It's suitab
 
 
 ## Issues
-
-*   **Google Authentication:** Due to hosting restrictions, Google Authentication (login with Google) is currently unavailable on the deployed version of this website. However, this functionality is fully implemented in the codebase and can be tested locally.
 *   **Contact Form:** The contact form is currently static and does not submit any data. Functionality to send emails via the contact form is planned for a future update.
 
 ## Installation
