@@ -20,6 +20,7 @@ function MuscleGroup() {
   const [exercises, setExercise] = useState([]);
   const [favoriteExercise, setFavoriteExercise] = useState(false);
   const [favorites, setFavorites] = useState([]);
+  const [showExercises, setShowExercises] = useState([])
 
   const navigate = useNavigate();
 
@@ -36,12 +37,17 @@ function MuscleGroup() {
     console.log("Polygon clicked:", event.target);
     const muscle = event.target.getAttribute("data-value");
     console.log("Muscle:", muscle);
+    console.log("selected: " + selectedMuscles)
+    console.log(filteredExercises)
     setSearchTerm(muscle);
 
     setSelectedMuscles((prevSelected) => {
+      // Check if the 'muscle' is already in the previously selected muscles
       if (prevSelected.includes(muscle)) {
+        // If it exists, remove it from the array (toggle off)
         return prevSelected.filter((item) => item !== muscle);
       } else {
+        // If it doesn't exist, add it to the array (toggle on)
         return [...prevSelected, muscle];
       }
     });
@@ -50,8 +56,18 @@ function MuscleGroup() {
   useEffect(() => {
     if (searchTerm) {
       handleSearch(setExercise, setFilteredExercises, searchTerm);
+      console.log(searchTerm)
     }
   }, [searchTerm]);
+
+  // Filter exercises, when user adds or remove body part
+  useEffect(() => {
+
+    const filteredList = filteredExercises.filter(exercise =>
+      selectedMuscles.some(muscle => exercise.bodyPart.includes(muscle))
+    );
+    setShowExercises(filteredList)
+  }, [filteredExercises, selectedMuscles])
 
   // Filter exercises based on input value
   useEffect(() => {
@@ -72,6 +88,7 @@ function MuscleGroup() {
       setFavorites(favoritesList);
     };
 
+    // Listen for authentication state changes (i.e., when the user logs in or out)
     onAuthStateChanged(auth, (user) => {
       if (user) {
         fetchFavorites();
@@ -319,7 +336,7 @@ function MuscleGroup() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
           ></input>
-          {filteredExercises.map((exercise) => (
+          {showExercises.map((exercise) => (
             <Link to={"/exercise/" + exercise.id}>
               <div className="card mb-4" key={exercise.id}>
                 <div className="row no-gutters">

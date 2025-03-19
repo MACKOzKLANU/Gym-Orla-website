@@ -211,6 +211,7 @@ body {
 /* button hover effect */
 .btn {
   transition: fill 0.3s ease, transform 0.3s ease;
+  z-index: 999;
 }
 .btn:hover {
   transform: translateY(-3px);
@@ -288,6 +289,7 @@ body {
 .button-dark {
   background: linear-gradient(90deg, rgba(40,116,240,1) 0%, rgba(30,30,60,1) 100%);
   border: "none";
+  
 }
 
 .form-dark {
