@@ -1,5 +1,26 @@
+import { useState } from "react";
+import { handleSubmit } from "./FirebaseUtils";
+
 // Contact component for the contact page
 function Contact() {
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [message, setMessage] = useState("")
+  const [emailStatus, setEmailStatus] = useState(false)
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    if (!name || !email || !message) {
+      console.error("All fields are required!");
+      return;
+    }
+    const success = await handleSubmit(name, email, message);
+
+    if (success) {
+      setEmailStatus(true);
+    }
+  }
+  
   return (
     <div>
       <div className="container mt-5">
@@ -11,44 +32,56 @@ function Contact() {
               to contact us through the form below. We’re here to help you
               achieve your fitness goals!
             </p>
-            <form>
-              <div className="mb-3">
-                <label htmlFor="name" className="form-label">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="name"
-                  required
-                />
+            {emailStatus ? (
+              <div className="alert alert-success" role="alert">
+                Thank you! Your message has been sent successfully.
               </div>
-              <div className="mb-3">
-                <label htmlFor="email" className="form-label">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  className="form-control"
-                  id="email"
-                  required
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="message" className="form-label">
-                  Message
-                </label>
-                <textarea
-                  className="form-control"
-                  id="message"
-                  rows="4"
-                  required
-                ></textarea>
-              </div>
-              <button type="submit" className="btn btn-dark">
-                Submit
-              </button>
-            </form>
+            ) : (
+              <form onSubmit={onSubmit}>
+                <div className="mb-3">
+                  <label htmlFor="name" className="form-label">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="form-control"
+                    id="name"
+                    required
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="email" className="form-label">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="form-control"
+                    id="email"
+                    required
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="message" className="form-label">
+                    Message
+                  </label>
+                  <textarea
+                    className="form-control"
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    id="message"
+                    rows="4"
+                    required
+                  ></textarea>
+                </div>
+                <button className="btn btn-dark" type="submit" >
+                  Submit
+                </button>
+              </form>
+            )}
           </div>
           <div className="col-md-6">
             <h2>Visit Us</h2>
@@ -69,7 +102,7 @@ function Contact() {
           </div>
         </div>
       </div>
-      );
+
     </div>
   );
 }

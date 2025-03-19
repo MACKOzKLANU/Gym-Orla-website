@@ -211,6 +211,7 @@ body {
 /* button hover effect */
 .btn {
   transition: fill 0.3s ease, transform 0.3s ease;
+  z-index: 999;
 }
 .btn:hover {
   transform: translateY(-3px);
@@ -279,4 +280,21 @@ body {
   #BackToTop {
     display: none !important;
   }
+}
+
+
+/* button and form */
+
+
+.button-dark {
+  background: linear-gradient(90deg, rgba(40,116,240,1) 0%, rgba(30,30,60,1) 100%);
+  border: "none";
+  
+}
+
+.form-dark {
+  max-width: 450px;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #1c1c1e, #2c2c2e);
+  border: 1px solid #444;
 }

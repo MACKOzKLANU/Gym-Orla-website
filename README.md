@@ -1,26 +1,33 @@
 # Gym Orla website
 
-Welcome to the Gym orla! This website is designed to help users achieve their fitness goals through a comprehensive set of features, including exercise tracking, personalized training plans, and nutritional guidance.
+Welcome to the Gym orla! This website is designed to help users achieve their fitness goals through a comprehensive set of features, including exercise finding,
+### **Active Development**
+
+This website is currently under active development. Expect frequent updates, bug fixes, and new features as we continue to improve the user experience.
+
+Click to view the live website <a href="https://gym-orla-website.vercel.app">https://gym-orla-website.vercel.app</a>
 
 ## Table of Contents
 - [Introduction](#introduction)
 - [Features](#features)
+- [Issues](#issues)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Components](#components)
 - [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
 
 ## Introduction
-This application provides a platform for users to explore exercises, track their progress, and receive guidance from professional trainers. It's suitable for beginners as well as experienced athletes.
+This application provides a platform for users to explore exercises. It's suitable for beginners as well as experienced athletes.
 
 ## Features
 - **Exercise Database**: Search and filter exercises by name or muscle group.
-- **Personalized Training Plans**: Access customized workout plans.
-- **Nutritional Guidance**: Get advice on diet and nutrition.
-- **Community Support**: Join a supportive fitness community.
-- **Progress Tracking**: Track your fitness progress over time.
+- **Firebase Integration**: 
+  - Firebase Authentication is now implemented, allowing users to securely log in and register.
+  - The contact form now stores user-submitted messages directly in the Firestore database.
+- **Deployment**: The application is hosted live on [Vercel](https://gym-orla-website.vercel.app) for seamless access.
+
+## Issues
+- Currently none
 
 ## Installation
 To install and run the application locally, follow these steps:
