@@ -149,3 +149,20 @@ export const handleSearchExerciseName = async (setExercise, setIsLoading, search
     }
   }
 };
+
+export const handleSubmit = async (name, email, message) => {
+  
+  // Add a new document with a generated id.
+  try {
+    const docRef = await addDoc(collection(db, "messages"), {
+      name: name,
+      email: email,
+      message: message,
+    });
+    console.log("Document written with ID: ", docRef.id);
+    return true;
+  } catch (error) {
+    console.error("Error adding document: ", error);
+    return false;
+  }
+};
