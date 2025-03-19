@@ -21,10 +21,13 @@ This application provides a platform for users to explore exercises. It's suitab
 
 ## Features
 - **Exercise Database**: Search and filter exercises by name or muscle group.
-
+- **Firebase Integration**: 
+  - Firebase Authentication is now implemented, allowing users to securely log in and register.
+  - The contact form now stores user-submitted messages directly in the Firestore database.
+- **Deployment**: The application is hosted live on [Vercel](https://gym-orla-website.vercel.app) for seamless access.
 
 ## Issues
-*   **Contact Form:** The contact form is currently static and does not submit any data. Functionality to send emails via the contact form is planned for a future update.
+- Currently none
 
 ## Installation
 To install and run the application locally, follow these steps:
