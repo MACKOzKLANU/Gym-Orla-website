@@ -35,7 +35,7 @@ To install and run the application locally, follow these steps:
 1. **Clone the repository**:
     ```sh
     git clone https://github.com/MACKOzKLANU/Gym-Orla-website.git
-    cd gym-orla-website
+    cd Gym-Orla-website
     ```
 
 2. **Install dependencies**:
